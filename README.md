@@ -1,5 +1,3 @@
-TK2-2 IDOR Web CTF
-
 Cara menjalankan:
 
 1. Install Docker Desktop
