@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Daftar Forum</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f6fa;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      color: #2254C5;
+      font-size: 1.8rem;
+    }
+
+    ul.forum-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+    }
+
+    .forum-item {
+      background-color: #f0f4ff;
+      border-left: 4px solid #2254C5;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .forum-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .forum-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.3rem;
+    }
+
+    .forum-link {
+      display: inline-block;
+      margin-top: 0.8rem;
+      text-decoration: none;
+      color: white;
+      background-color: #2254C5;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+
+    .forum-link:hover {
+      background-color: #1b45a0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Halo, {{ request.user.username }}!</h2>
+    <p>Berikut adalah daftar forum diskusi yang tersedia.</p>
+
+    <ul class="forum-list">
+      {% for forum in forums %}
+        {% if not forum.owner.is_superuser %}
+          <li class="forum-item">
+            <div class="forum-title">{{ forum.title }}</div>
+            <div class="forum-meta">
+              oleh <strong>{{ forum.owner.username }}</strong>
+              {% if forum.owner == request.user %} (milik kamu) {% endif %}
+            </div>
+            <a href="/forum/{{ forum.id }}/" class="forum-link">Lihat Detail</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div style="text-align: right;">
+    <a href="/logout/" style="color: red; text-decoration: none; font-weight: bold;">Logout</a>
+  </div>
+
+</body>
+</html>

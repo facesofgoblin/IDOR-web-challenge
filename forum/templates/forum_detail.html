@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ forum.title }}</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f7f9fc;
+            padding: 2rem;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        .title {
+            color: #2254C5;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .author {
+            font-size: 0.9rem;
+            color: gray;
+            margin-bottom: 1rem;
+        }
+        .description {
+            font-size: 1.1rem;
+            white-space: pre-line;
+        }
+        .back {
+            margin-top: 2rem;
+            display: inline-block;
+            color: #2254C5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">{{ forum.title }}</div>
+        <div class="author">Ditulis oleh: {{ forum.owner.username }}</div>
+        <div class="description">{{ forum.description }}</div>
+
+        <a href="/forum/" class="back">← Kembali ke daftar forum</a>
+    </div>
+</body>
+</html>
